@@ -7,26 +7,20 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                 
             </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle"
-                    data-toggle="dropdown">
-                <?= 'Admin' ?><i class="fas fa-user-cog ml-2"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-    <a href="#" class="dropdown-item text-right">Change Password <i class="fas fa-key"></i></a>
-    <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item text-right">Logout <i class="fas fa-sign-out-alt"></i></a>
-</div>
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                        <?= 'Admin' ?> <i class="fas fa-user-cog ml-2"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="#" class="dropdown-item text-right">Change Password <i class="fas fa-key"></i></a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item text-right">Logout <i class="fas fa-sign-out-alt"></i></a>
+                    </div>
                 </li>
-
-
+            </ul>
         </nav>
         <!-- /.navbar -->
