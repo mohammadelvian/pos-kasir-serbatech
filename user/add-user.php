@@ -1,11 +1,23 @@
 <?php
 
 require "../config/config.php";
+require "../config/function.php";
+require "../module/mode-user.php";
 
 $title = "Tambah User - Serbatech POS";
 require "../template/header.php";
 require "../template/navbar.php";
 require "../template/sidebar.php";
+
+
+//panggil fungsi simpan
+if (isset($_POST['simpan'])) {
+    if (insert($_POST) > 0) {
+        echo "<script>
+        alert('User baru berhasil diregristrasi!');
+        </script>";
+    }
+}
 
 ?>
 <!-- Content Wrapper. Contains page content -->
