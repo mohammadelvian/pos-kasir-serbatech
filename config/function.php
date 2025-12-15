@@ -1,5 +1,7 @@
 <?php
 
+use Dom\Mysql;
+
 function uploadimg()
 {
     $namafile = $_FILES['image']['name'];
@@ -29,4 +31,29 @@ function uploadimg()
     $namafilebaru = rand(10, 1000) . '-' . $namafile;
     move_uploaded_file($tmp, '../asset/image/' . $namafilebaru);
     return $namafilebaru;
+}
+
+function getData($sql)
+{
+    global $koneksi;
+
+
+    $result = mysqli_query($koneksi, $sql);
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+    return $rows;
+}
+
+function delete($id, $foto)
+{
+    global $koneksi;
+
+    $sqlDel = "DELETE FROM tbl_user WHERE userid = $id";
+    mysqli_query($koneksi, $sqlDel);
+
+    if ($foto != 'default.png') {
+        unlink('../asset/image/' . $foto);
+    }
 }
