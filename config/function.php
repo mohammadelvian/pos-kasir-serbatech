@@ -46,29 +46,29 @@ function getData($sql)
     return $rows;
 }
 
-function delete($id, $foto)
-{
-    global $koneksi;
-    // sanitize inputs
-    $id = (int) $id;
-    $foto = basename($foto);
+// function delete($id, $foto)
+// {
+//     global $koneksi;
+//     // sanitize inputs
+//     $id = (int) $id;
+//     $foto = basename($foto);
 
-    if ($id <= 0) {
-        return false;
-    }
+//     if ($id <= 0) {
+//         return false;
+//     }
 
-    $sqlDel = "DELETE FROM tbl_user WHERE userid = $id";
-    $res = mysqli_query($koneksi, $sqlDel);
+//     $sqlDel = "DELETE FROM tbl_user WHERE userid = $id";
+//     $res = mysqli_query($koneksi, $sqlDel);
 
-    if ($res) {
-        if ($foto && $foto !== 'default.png') {
-            $path = __DIR__ . '/../asset/image/' . $foto;
-            if (is_file($path)) {
-                @unlink($path);
-            }
-        }
-        return true;
-    }
+//     if ($res) {
+//         if ($foto && $foto !== 'default.png') {
+//             $path = __DIR__ . '/../asset/image/' . $foto;
+//             if (is_file($path)) {
+//                 @unlink($path);
+//             }
+//         }
+//         return true;
+//     }
 
-    return false;
-}
+//     return false;
+// }

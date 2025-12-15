@@ -66,7 +66,7 @@ require "../template/sidebar.php";
                             foreach ($users as $user) : ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <td><img src="../asset/image/<?= $user['foto'] ?>" class="rounded-circle" alt="" width="60px"></td>
+                                    <td><img src="../asset/image/<?= $user['foto'] ?>" class="rounded-circle" alt="" width="60px" height="60px" style="object-fit: cover;"></td>
                                     <td><?= $user['username'] ?></td>
                                     <td><?= $user['fullname'] ?></td>
                                     <td><?= $user['address'] ?></td>
