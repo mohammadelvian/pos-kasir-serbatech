@@ -49,11 +49,26 @@ function getData($sql)
 function delete($id, $foto)
 {
     global $koneksi;
+    // sanitize inputs
+    $id = (int) $id;
+    $foto = basename($foto);
+
+    if ($id <= 0) {
+        return false;
+    }
 
     $sqlDel = "DELETE FROM tbl_user WHERE userid = $id";
-    mysqli_query($koneksi, $sqlDel);
+    $res = mysqli_query($koneksi, $sqlDel);
 
-    if ($foto != 'default.png') {
-        unlink('../asset/image/' . $foto);
+    if ($res) {
+        if ($foto && $foto !== 'default.png') {
+            $path = __DIR__ . '/../asset/image/' . $foto;
+            if (is_file($path)) {
+                @unlink($path);
+            }
+        }
+        return true;
     }
+
+    return false;
 }
