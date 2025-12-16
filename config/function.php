@@ -39,6 +39,11 @@ function getData($sql)
 
 
     $result = mysqli_query($koneksi, $sql);
+    // KOREKSI: Tambahkan pengecekan ini
+    if (!$result) {
+        // Ini akan menampilkan pesan error MySQL yang spesifik
+        die("Query Gagal! Error: " . mysqli_error($koneksi) . " | Query: " . $sql);
+    }
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $rows[] = $row;
