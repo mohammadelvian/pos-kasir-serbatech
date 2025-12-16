@@ -61,3 +61,33 @@ function delete($id, $foto)
     }
     return mysqli_affected_rows($koneksi);
 }
+
+function selectUser1($level)
+{
+    $result = null;
+    if ($level == 1) {
+        $result = "selected";
+    }
+
+    return $result;
+}
+
+function selectUser2($level)
+{
+    $result = null;
+    if ($level == 2) {
+        $result = "selected";
+    }
+
+    return $result;
+}
+
+function selectUser3($level)
+{
+    $result = null;
+    if ($level == 3) {
+        $result = "selected";
+    }
+
+    return $result;
+}
