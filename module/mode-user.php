@@ -91,3 +91,66 @@ function selectUser3($level)
 
     return $result;
 }
+
+
+function Update($data)
+{
+    global $koneksi;
+
+    $iduser     = mysqli_real_escape_string($koneksi, $data['id']);
+    $username = strtolower(mysqli_real_escape_string($koneksi, $data["username"]));
+    $fullname = mysqli_real_escape_string($koneksi, $data['fullname']);
+    $level = mysqli_real_escape_string($koneksi, $data['level']);
+    $address = mysqli_real_escape_string($koneksi, $data['address']);
+    $gambar = $_FILES['image']['name'];
+    $fotoLama = mysqli_real_escape_string($koneksi, $data['oldImg']);
+
+    //cek username sekarang (yg sedang di update)
+    $queryUsername = mysqli_query($koneksi, "SELECT * FROM tbl_user WHERE userid = $iduser");
+    $dataUsername = mysqli_fetch_assoc($queryUsername);
+    //untuk menyimpan user yg sedang di update
+    $curUsername = $dataUsername['username'];
+
+    //cek username baru
+    $newUsername = mysqli_query($koneksi, "SELECT username FROM tbl_user WHERE username = '$username'");
+
+    if ($username !== $curUsername) {
+        if (mysqli_num_rows($newUsername)) {
+            echo "<script>
+            alert('username sudah terpakai, update data user gagal !');
+            </script>";
+            return false;
+        }
+    }
+
+    //Memeriksa apakah ada file gambar baru yang diunggah ($gambar tidak sama dengan null)
+    // Jika ada gambar baru, siapkan URL/path untuk proses upload (atau fungsi uploadimg)
+    $url = "data-user.php";
+    if ($gambar    != null) {
+        $url        = "data-user.php";
+        // Panggil fungsi kustom untuk mengunggah dan memproses gambar baru
+        // Hasilnya (biasanya nama file baru atau path) disimpan di $imgUser
+        $imgUser    = uploadimg($url);
+        // Cek apakah foto lama BUKAN foto default ('default.png')    
+        if ($fotoLama != 'default.png') {
+            // Jika foto lama adalah foto kustom (bukan default), 
+            // @unlink digunakan untuk menghapus file foto lama dari server.
+            // Tanda @ berfungsi untuk menekan error jika file tidak ditemukan.
+            @unlink('../asset/image/' . $fotoLama);
+        }
+    } else {
+        // Jika tidak ada file gambar baru yang diunggah ($gambar sama dengan null)
+        // Pertahankan nama file/path gambar yang lama
+        $imgUser = $fotoLama;
+    }
+
+    mysqli_query($koneksi, "UPDATE tbl_user SET
+                            username    = '$username',
+                            fullname    = '$fullname',
+                            address     = '$address',
+                            level       = '$level',
+                            foto        = '$imgUser'
+                            WHERE userid= $iduser
+                            ");
+    return mysqli_affected_rows($koneksi);
+}

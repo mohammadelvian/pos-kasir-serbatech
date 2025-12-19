@@ -2,7 +2,7 @@
 
 use Dom\Mysql;
 
-function uploadimg()
+function uploadimg($url = null)
 {
     $namafile = $_FILES['image']['name'];
     $ukuran = $_FILES['image']['size'];
@@ -14,18 +14,34 @@ function uploadimg()
     $ekstensigambar = explode('.', $namafile);
     $ekstensigambar = strtolower(end($ekstensigambar));
     if (!in_array($ekstensigambar, $ekstensigambarvalid)) {
-        echo '<script>
+        if ($url != null) {
+            echo '<script>
+        alert("Tipe file yang anda upload bukan gambar, data gagal diupdate !");
+        document.location.href = "' . $url . '";
+        </script>';
+            die();
+        } else {
+            echo '<script>
         alert("Tipe file yang anda upload bukan gambar!");
         </script>';
-        return false;
+            return false;
+        }
     }
 
     //validasi ukuran gambar max 1 MB
     if ($ukuran > 1000000) {
-        echo '<script>
+        if ($url != null) {
+            echo '<script>
+        alert("Ukuran gambar melebihi 1 MB!");
+        document.location.href = "' . $url . '";
+        </script>';
+            die();
+        } else {
+            echo '<script>
         alert("Ukuran gambar terlalu besar! Max 1 MB");
         </script>';
-        return false;
+            return false;
+        }
     }
 
     $namafilebaru = rand(10, 1000) . '-' . $namafile;

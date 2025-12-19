@@ -16,6 +16,15 @@ $sqlEdit = "SELECT * FROM tbl_user WHERE userid = '$id'";
 $user   = getData($sqlEdit)[0];
 $level  = $user['level'];
 
+if (isset($_POST['koreksi'])) {
+    if (Update($_POST)) {
+        echo '<script>
+        alert("Data berhasil diupdate");
+        document.location.href = "data-user.php";
+        </script>';
+    }
+}
+
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -67,23 +76,20 @@ $level  = $user['level'];
                                         <option value="">-- Level User --</option>
                                         <option value="1" <?= selectUser1($level) ?>>Administrator</option>
                                         <option value="2" <?= selectUser2($level) ?>>Supervisor</option>
-                                        <option value="3" <?= selectUser2($level) ?>>Operator</option>
+                                        <option value="3" <?= selectUser3($level) ?>>Operator</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="address">Address</label>
                                     <textarea name="address" id="address"
                                         cols="" rows="3" class="form-control"
-                                        placeholder="masukkan alamat user" required><?= $user['address'] ?>"</textarea>
-
-                                    </select>
+                                        placeholder="masukkan alamat user" required><?= $user['address'] ?></textarea>
                                 </div>
                                 <!-- membuat kolom large8, margin bottom 3 -->
                             </div>
                             <div class="col-lg-4 text-center">
-                                <input type="hidden" name="oldimg" value="?= $main_url ?>asset/image/
-                                <?= $user['foto'] ?>">
-                                <img src="<?= $main_url ?>asset/image/default.png" class="profile-user-img img-circle mb-3" alt="">
+                                <input type="hidden" name="oldImg" value="<?= $user['foto'] ?>">
+                                <img src="<?= $main_url ?>asset/image/<?= $user['foto'] ?>" class="profil-user-img img-circle mb-3" alt="" width="100px" height="100px" style="object-fit: cover;">
                                 <input type="file" class="form-control" name="image">
                                 <span class="text-sm">Tipe file gambar JPG | PNG | GIF</span>
                                 <span class="text-sm">width = height</span>
