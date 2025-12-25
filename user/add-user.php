@@ -33,7 +33,7 @@ if (isset($_POST['simpan'])) {
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= $main_url ?>dashboard.php">Home</a></li>
                         <li class="breadcrumb-item"><a href="<?= $main_url ?>user/data-user.php">Users</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">Add User</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
