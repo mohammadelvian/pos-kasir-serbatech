@@ -8,6 +8,7 @@ if (!isset($_SESSION["ssLoginPOS"])) {
 }
 
 require "config/config.php";
+require "config/function.php";
 
 $title = "Dashboard - Codingline POS";
 require "template/header.php";

@@ -67,29 +67,17 @@ function getData($sql)
     return $rows;
 }
 
-// function delete($id, $foto)
-// {
-//     global $koneksi;
-//     // sanitize inputs
-//     $id = (int) $id;
-//     $foto = basename($foto);
-
-//     if ($id <= 0) {
-//         return false;
-//     }
-
-//     $sqlDel = "DELETE FROM tbl_user WHERE userid = $id";
-//     $res = mysqli_query($koneksi, $sqlDel);
-
-//     if ($res) {
-//         if ($foto && $foto !== 'default.png') {
-//             $path = __DIR__ . '/../asset/image/' . $foto;
-//             if (is_file($path)) {
-//                 @unlink($path);
-//             }
-//         }
-//         return true;
-//     }
-
-//     return false;
-// }
+/**
+ * Fungsi untuk mengambil data lengkap user yang sedang login
+ * @return array - Mengembalikan array berisi data user dari database
+ */
+function userLogin()
+{
+    $userActive = $_SESSION["ssUserPOS"]; // Mengambil username user yang sedang aktif dari session 'ssUserPOS'
+    // Menjalankan query untuk mengambil seluruh kolom dari tabel user
+    // berdasarkan username yang didapat dari session.
+    // [0] digunakan untuk mengambil baris pertama dari hasil query (index 0).
+    $dataUser = getData("SELECT * FROM tbl_user WHERE username = '$userActive'")[0];
+    // Mengembalikan data user dalam bentuk array asosiatif
+    return $dataUser;
+}
