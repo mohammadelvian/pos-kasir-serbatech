@@ -27,87 +27,91 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+
+                <?php
+                if (userLogin()['level'] != 3) {
+                ?>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-folder text-sm"></i>
+                            <p>
+                                Master
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-sm"></i>
+                                    <p>Supplier</p>
+
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-sm"></i>
+                                    <p>Customer</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-sm"></i>
+                                    <p>Barang</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> <?php } ?>
+                <li class="nav-header">Transaksi</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-folder text-sm"></i>
-                        <p>
-                            Master
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
+                        <i class="nav-icon fas fa-shopping-cart text-sm"></i>
+                        <p>Pembelian</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon text-sm"></i>
-                                <p>Supplier</p>
-
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon text-sm"></i>
-                                <p>Customer</p>
-                            </a>
-                        </li>
-                        <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon text-sm"></i>
-                            <p>Barang</p>
-                        </a>
                 </li>
-            </ul>
-            </li>
-            <li class="nav-header">Transaksi</li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-shopping-cart text-sm"></i>
-                    <p>Pembelian</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-file-invoice text-sm"></i>
-                    <p>Penjualan</p>
-                </a>
-            </li>
-            </li>
-            <li class="nav-header">Report</li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-chart-pie text-sm"></i>
-                    <p>Laporan Pembelian</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-chart-line text-sm"></i>
-                    <p>Laporan Penjualan</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-warehouse text-sm"></i>
-                    <p>Laporan Stok</p>
-                </a>
-            </li>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-cog text-sm"></i>
-                    <p>
-                        Pengaturan
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="<?= $main_url ?>user/data-user.php" class="nav-link">
-                            <i class="far fa-circle nav-icon text-sm"></i>
-                            <p>Users</p>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-file-invoice text-sm"></i>
+                        <p>Penjualan</p>
+                    </a>
+                </li>
+                <li class="nav-header">Report</li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie text-sm"></i>
+                        <p>Laporan Pembelian</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-line text-sm"></i>
+                        <p>Laporan Penjualan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-warehouse text-sm"></i>
+                        <p>Laporan Stok</p>
+                    </a>
+                </li>
+                <?php
 
+                if (userLogin()['level'] == 1) { ?>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-cog text-sm"></i>
+                            <p>
+                                Pengaturan
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
                         </a>
-                    </li>
-            </li>
-            </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= $main_url ?>user/data-user.php" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-sm"></i>
+                                    <p>Users</p>
+                                </a>
+                            </li> <?php } ?>
+                        </ul>
         </nav>
 
         <!-- /.sidebar-menu -->
