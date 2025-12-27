@@ -23,7 +23,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="<?= $main_url ?>dashboard.php"
-                        class="nav-link"><i class="nav-icon fas fa-tachometer-alt text-sm"></i>
+                        class="nav-link <?= menuHome() ?>"><i class="nav-icon fas fa-tachometer-alt text-sm"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
@@ -96,7 +96,7 @@
                 <?php
 
                 if (userLogin()['level'] == 1) { ?>
-                    <li class="nav-item">
+                    <li class="nav-item <?= menuSetting() ?>">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-cog text-sm"></i>
                             <p>
@@ -105,7 +105,7 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
+                            <li class="nav-item <?= menuUser() ?>">
                                 <a href="<?= $main_url ?>user/data-user.php" class="nav-link">
                                     <i class="far fa-circle nav-icon text-sm"></i>
                                     <p>Users</p>
